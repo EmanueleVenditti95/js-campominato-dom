@@ -2,11 +2,14 @@ let gridElement = document.querySelector('.grid')
 
 const playButtonElement = document.getElementById('play-button')
 
+let clicks = 0
 
 playButtonElement.addEventListener("click", function () {
     
     gridElement.innerHTML = ''
     document.getElementById("game-over").innerHTML = ''
+    clicks = 0
+    document.getElementById("score").innerHTML = clicks
     
     
     const arrayRandomBombs = getArrayOfRandomNumbers(1,100,16)
@@ -24,6 +27,8 @@ playButtonElement.addEventListener("click", function () {
         
         cellElement.addEventListener("click", function () {
             const numberCellElement = parseInt(cellElement.innerHTML)
+
+            onClick()
 
         if (arrayRandomBombs.includes(numberCellElement) !== true){
 
@@ -78,3 +83,7 @@ function gameOver() {
 }
 
 
+function onClick() {
+    clicks += 1
+    document.getElementById("score").innerHTML = clicks
+}
