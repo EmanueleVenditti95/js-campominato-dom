@@ -22,3 +22,23 @@ playButtonElement.addEventListener("click" ,function() {
     })
     }    
 }) 
+
+
+function getArrayOfRandomNumbers (minRange,maxRange,number) {
+const arrayRandomBombs = []
+    while (arrayRandomBombs.lenght < number) {
+        let n = getRandomInt(minRange,maxRange)
+        arrayRandomBombs.push(n)
+    }
+    return arrayRandomBombs
+}
+console.log(getArrayOfRandomNumbers(1,100,16))
+
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * max + 1);
+}
+console.log(getRandomInt(1,100))
+    
