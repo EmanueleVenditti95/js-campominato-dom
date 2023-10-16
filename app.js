@@ -2,37 +2,67 @@ let gridElement = document.querySelector('.grid')
 
 const playButtonElement = document.getElementById('play-button')
 
-playButtonElement.addEventListener("click" ,function() {
+
+playButtonElement.addEventListener("click", function () {
     
     gridElement.innerHTML = ''
+    document.getElementById("game-over").innerHTML = ''
+    
+    
+    const arrayRandomBombs = getArrayOfRandomNumbers(1,100,16)
+    console.log(arrayRandomBombs)
 
-    for (let i = 0; i < 100; i++){
+    for (let i = 0; i < 100; i++) {
         let n = (i + 1)
-        gridElement.innerHTML += `<div class="cell">${n}</div>`   
+        gridElement.innerHTML += `<div class="cell">${n}</div>`
     }
 
     const cellsArrayElement = document.querySelectorAll('.cell')
 
-    for (let i = 0; i < 100; i++){
+    for (let i = 0; i < 100; i++) {
         const cellElement = cellsArrayElement[i]
+        
+        cellElement.addEventListener("click", function () {
+            const numberCellElement = parseInt(cellElement.innerHTML)
 
-        cellElement.addEventListener("click", function(){
-           cellElement.classList.add('bg-skyblue')
-           console.log('Hai cliccato il numero', (i + 1)) 
-    })
-    }    
-}) 
+        if (arrayRandomBombs.includes(numberCellElement) !== true){
 
+            console.log(arrayRandomBombs.includes(numberCellElement))
+            cellElement.classList.add('bg-skyblue')
+            console.log('Hai cliccato il numero', (i + 1))
 
-function getArrayOfRandomNumbers (minRange,maxRange,number) {
-const arrayRandomBombs = []
-    for (i=0; i < number; i++) {
-        let n = getRandomInt(minRange,maxRange)
-        arrayRandomBombs.push(n)
+        } else if (arrayRandomBombs.includes(numberCellElement) === true) {
+            cellElement.classList.add('bg-red')
+            gameOver()
+        }
+        })
     }
-    return arrayRandomBombs
+})
+
+
+function getArrayOfRandomNumbers(minRange, maxRange, number) {
+
+     const arrayRandomBombs = []
+     while (arrayRandomBombs.length < number) {
+         let n = getRandomInt(minRange,maxRange);
+
+         if (arrayRandomBombs.includes(n) !== true){
+            arrayRandomBombs.push(n)
+        } 
+     }
+     return arrayRandomBombs;
+    
+    // const arrayRandomBombs = []
+    // for (i = 0; i < number; i++) {
+    //     i = arrayRandomBombs.length
+    //     let n = getRandomInt(minRange, maxRange)
+
+    //     if (arrayRandomBombs.includes(n) !== true){
+    //         arrayRandomBombs.push(n)
+    //     }
+    // }
+    // return arrayRandomBombs    
 }
-console.log(getArrayOfRandomNumbers(1,100,16))
 
 
 function getRandomInt(min, max) {
@@ -41,4 +71,10 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * max + 1);
 }
 
-    
+function gameOver() {
+    const gameOverString = document.createElement("div")
+    gameOverString.innerHTML = "GAME OVER"
+    document.getElementById("game-over").appendChild(gameOverString)
+}
+
+
