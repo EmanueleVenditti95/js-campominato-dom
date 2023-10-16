@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cell {
+    border: 1px solid black;
+    aspect-ratio: 1;
+    justify-content: center;
+    align-items: center;
+    flex-basis: calc(100% / 10);
+    display: flex;
+}
+
+.bg-skyblue {
+    background-color: rgb(0, 162, 255);
+}
