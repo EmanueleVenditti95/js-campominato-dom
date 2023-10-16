@@ -26,7 +26,7 @@ playButtonElement.addEventListener("click" ,function() {
 
 function getArrayOfRandomNumbers (minRange,maxRange,number) {
 const arrayRandomBombs = []
-    while (arrayRandomBombs.lenght < number) {
+    for (i=0; i < number; i++) {
         let n = getRandomInt(minRange,maxRange)
         arrayRandomBombs.push(n)
     }
@@ -40,5 +40,5 @@ function getRandomInt(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * max + 1);
 }
-console.log(getRandomInt(1,100))
+
     
