@@ -39,6 +39,11 @@ playButtonElement.addEventListener("click", function () {
         } else if (arrayRandomBombs.includes(numberCellElement) === true) {
             cellElement.classList.add('bg-red')
             gameOver()
+
+        }
+
+        if (clicks == 84){
+            gameWin()
         }
         })
     }
@@ -82,6 +87,11 @@ function gameOver() {
     document.getElementById("game-over").appendChild(gameOverString)
 }
 
+function gameWin() {
+    const gameOverString = document.createElement("div")
+    gameOverString.innerHTML = "YOU WIN!"
+    document.getElementById("game-over").appendChild(gameOverString)
+}
 
 function onClick() {
     clicks += 1
